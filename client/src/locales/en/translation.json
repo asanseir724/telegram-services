@@ -52,15 +52,30 @@
     },
     "services": {
       "title": "Our Services",
+      "subtitle": "Telegram Stars & Premium Services",
+      "desc": "Get the best Telegram services at affordable prices",
       "stars": {
         "title": "Telegram Stars",
-        "desc": "Boost your stars to increase your account credibility"
+        "desc": "Boost your stars to increase your account credibility",
+        "per100": "per 100 stars",
+        "buyButton": "Buy Stars",
+        "features": {
+          "visibility": "Increase visibility in channels",
+          "engagement": "Boost engagement rate",
+          "ranking": "Improve channel ranking"
+        }
       },
       "premium": {
         "title": "Telegram Premium",
-        "desc": "Enjoy advanced Telegram features with premium membership"
-      },
-      "buyButton": "Buy Now"
+        "desc": "Enjoy advanced Telegram features with premium membership",
+        "perMonth": "per month",
+        "buyButton": "Buy Premium",
+        "features": {
+          "files": "4GB file uploads",
+          "channels": "Join up to 1000 channels",
+          "stickers": "Premium stickers and reactions"
+        }
+      }
     }
   },
   "forms": {
