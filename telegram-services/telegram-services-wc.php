@@ -14,8 +14,8 @@
  * @wordpress-plugin
  * Plugin Name:       Telegram Services for WooCommerce
  * Plugin URI:        https://github.com/asanseir724/telegram-services
- * Description:       Integrates Telegram Stars and Premium services with WooCommerce
- * Version:           1.0.0
+ * Description:       Integrates Telegram Stars and Premium services with WooCommerce. Sell Telegram Stars and Premium services with automated delivery.
+ * Version:           1.0.1
  * Author:            Amir Sanseir
  * Author URI:        https://github.com/asanseir724
  * License:           GPL-2.0+
@@ -23,9 +23,10 @@
  * Text Domain:       telegram-services-wc
  * Domain Path:       /languages
  * Requires at least: 5.7
+ * Tested up to:      6.4
  * Requires PHP:      7.4
  * WC requires at least: 6.0
- * WC tested up to:   8.2
+ * WC tested up to:   8.4
  */
 
 // If this file is called directly, abort.
@@ -36,7 +37,7 @@ if (!defined('WPINC')) {
 /**
  * Currently plugin version.
  */
-define('TELEGRAM_SERVICES_WC_VERSION', '1.0.0');
+define('TELEGRAM_SERVICES_WC_VERSION', '1.0.1');
 
 /**
  * Plugin directory path.
