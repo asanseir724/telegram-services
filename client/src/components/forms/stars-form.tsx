@@ -7,6 +7,7 @@ import { Service, orderFormSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import {
   Dialog,
@@ -41,6 +42,7 @@ interface StarsFormProps {
 
 export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [total, setTotal] = useState<number | null>(null);
 
   // Get stars services
@@ -56,7 +58,7 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
   // Create extended schema with validation
   const formSchema = orderFormSchema.extend({
     serviceId: z.number({
-      required_error: "Please select a package",
+      required_error: t('forms.validations.required'),
     }),
   });
 
@@ -78,7 +80,7 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
 
   if (watchServiceId && watchQuantity && services) {
     const selectedService = services.find(service => service.id === watchServiceId);
-    if (selectedService) {
+    if (selectedService && selectedService.quantity) {
       const calculatedTotal = selectedService.price * (watchQuantity / selectedService.quantity);
       if (calculatedTotal !== total) {
         setTotal(calculatedTotal);
@@ -94,15 +96,15 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
     },
     onSuccess: () => {
       toast({
-        title: "Order Placed",
-        description: "Your order has been successfully placed!",
+        title: t('common.success'),
+        description: t('common.success'),
       });
       form.reset();
       onClose();
     },
     onError: (error: Error) => {
       toast({
-        title: "Order Failed",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -117,7 +119,9 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
   const handleServiceChange = (serviceId: number) => {
     const service = services?.find(s => s.id === serviceId);
     if (service) {
-      form.setValue("quantity", service.quantity);
+      // Ensure we have a valid quantity
+      const safeQuantity = typeof service.quantity === 'number' ? service.quantity : 1;
+      form.setValue("quantity", safeQuantity);
       form.setValue("serviceId", serviceId);
     }
   };
@@ -127,16 +131,16 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center">
-            <div className="mr-2 flex-shrink-0 bg-[#0088CC] rounded-md p-2">
+            <div className="mr-2 rtl:ml-2 rtl:mr-0 flex-shrink-0 bg-[#0088CC] rounded-md p-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </div>
-            Buy Telegram Stars
+            {t('forms.stars.title')}
           </DialogTitle>
           <DialogDescription>
-            Boost your channel visibility with Telegram Stars
+            {t('home.services.stars.desc')}
           </DialogDescription>
           <button
-            className="absolute top-4 right-4 inline-flex items-center justify-center rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0088CC]"
+            className="absolute top-4 right-4 rtl:left-4 rtl:right-auto inline-flex items-center justify-center rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0088CC]"
             onClick={onClose}
           >
             <X className="h-4 w-4" />
@@ -151,9 +155,9 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
               name="telegramId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Telegram ID or Username</FormLabel>
+                  <FormLabel>{t('forms.stars.telegramId')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="@username or 123456789" {...field} />
+                    <Input placeholder={t('forms.stars.telegramIdPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -165,9 +169,9 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
               name="phoneNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number</FormLabel>
+                  <FormLabel>{t('forms.stars.phoneNumber')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="+1234567890" {...field} />
+                    <Input placeholder={t('forms.stars.phoneNumberPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -179,7 +183,7 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
               name="serviceId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Stars Package</FormLabel>
+                  <FormLabel>{t('forms.stars.quantity')}</FormLabel>
                   <Select
                     onValueChange={(value) => handleServiceChange(Number(value))}
                     value={field.value.toString()}
@@ -187,7 +191,7 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a package" />
+                        <SelectValue placeholder={t('forms.stars.quantity')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -209,11 +213,11 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
               render={({ field }) => (
                 <FormItem>
                   <div className="flex justify-between">
-                    <FormLabel>Email (Optional)</FormLabel>
+                    <FormLabel>{t('forms.stars.email')}</FormLabel>
                     <span className="text-xs text-gray-500 dark:text-gray-400">For receipt</span>
                   </div>
                   <FormControl>
-                    <Input placeholder="your@email.com" {...field} />
+                    <Input placeholder={t('forms.stars.emailPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -235,7 +239,7 @@ export default function StarsForm({ isOpen, onClose }: StarsFormProps) {
                 className="w-full" 
                 disabled={orderMutation.isPending}
               >
-                {orderMutation.isPending ? "Processing..." : "Proceed to Payment"}
+                {orderMutation.isPending ? t('common.loading') : t('forms.stars.submitButton')}
               </Button>
             </DialogFooter>
           </form>

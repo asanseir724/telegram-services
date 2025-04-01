@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/hooks/use-auth";
 import { useLocation } from "wouter";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,33 +27,35 @@ import {
 import { Input } from "@/components/ui/input";
 import { Star, Lock } from "lucide-react";
 
-const loginSchema = z.object({
-  username: z.string().min(3, {
-    message: "Username must be at least 3 characters.",
-  }),
-  password: z.string().min(6, {
-    message: "Password must be at least 6 characters.",
-  }),
-});
-
-const registerSchema = z.object({
-  username: z.string().min(3, {
-    message: "Username must be at least 3 characters.",
-  }),
-  password: z.string().min(6, {
-    message: "Password must be at least 6 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }).optional(),
-  name: z.string().min(1, {
-    message: "Name is required.",
-  }),
-});
-
 export default function AuthPage() {
   const [location, navigate] = useLocation();
   const { user, loginMutation, registerMutation } = useAuth();
+  const { t } = useTranslation();
+
+  // Create validation schemas with translated messages
+  const loginSchema = z.object({
+    username: z.string().min(3, {
+      message: t('forms.validations.username'),
+    }),
+    password: z.string().min(6, {
+      message: t('forms.validations.password'),
+    }),
+  });
+
+  const registerSchema = z.object({
+    username: z.string().min(3, {
+      message: t('forms.validations.username'),
+    }),
+    password: z.string().min(6, {
+      message: t('forms.validations.password'),
+    }),
+    email: z.string().email({
+      message: t('forms.validations.email'),
+    }).optional(),
+    name: z.string().min(1, {
+      message: t('forms.validations.required'),
+    }),
+  });
 
   // If already logged in, redirect to admin page
   useEffect(() => {
@@ -92,8 +95,8 @@ export default function AuthPage() {
   return (
     <>
       <Helmet>
-        <title>Login - TelegramPlus Admin</title>
-        <meta name="description" content="Login to the TelegramPlus admin panel" />
+        <title>{t('common.login')} - {t('common.appName')} {t('nav.admin')}</title>
+        <meta name="description" content={`${t('common.login')} - ${t('common.appName')} ${t('nav.admin')}`} />
       </Helmet>
 
       <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-4">
@@ -102,34 +105,34 @@ export default function AuthPage() {
             <div className="mb-4">
               <Star className="h-12 w-12 text-white" />
             </div>
-            <h1 className="text-3xl font-bold mb-4">TelegramPlus Admin</h1>
+            <h1 className="text-3xl font-bold mb-4">{t('common.appName')} {t('nav.admin')}</h1>
             <p className="text-lg mb-6">
-              Manage your Telegram Stars and Premium services all in one place.
+              {t('home.services.stars.desc')} {t('home.services.premium.desc')}
             </p>
             <ul className="space-y-3">
               <li className="flex items-center">
-                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3">
+                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3 rtl:ml-3 rtl:mr-0">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </span>
-                Track and manage customer orders
+                {t('admin.orders.title')}
               </li>
               <li className="flex items-center">
-                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3">
+                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3 rtl:ml-3 rtl:mr-0">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </span>
-                Configure pricing and commission rates
+                {t('admin.pricing.title')}
               </li>
               <li className="flex items-center">
-                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3">
+                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3 rtl:ml-3 rtl:mr-0">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </span>
-                Monitor sales and revenue
+                {t('admin.dashboard.revenue')}
               </li>
               <li className="flex items-center">
-                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3">
+                <span className="bg-white bg-opacity-20 rounded-full p-1 mr-3 rtl:ml-3 rtl:mr-0">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </span>
-                Customize site settings
+                {t('admin.settings.title')}
               </li>
             </ul>
           </div>
@@ -138,18 +141,18 @@ export default function AuthPage() {
             <Card className="shadow-lg border-0">
               <CardHeader className="space-y-1">
                 <div className="flex items-center mb-2 justify-center md:justify-start">
-                  <Lock className="h-6 w-6 text-[#0088CC] mr-2" />
-                  <CardTitle className="text-2xl">Authentication</CardTitle>
+                  <Lock className="h-6 w-6 text-[#0088CC] mr-2 rtl:ml-2 rtl:mr-0" />
+                  <CardTitle className="text-2xl">{t('common.login')}</CardTitle>
                 </div>
                 <CardDescription>
-                  Enter your credentials to access the admin panel
+                  {t('forms.auth.username')} {t('forms.auth.password')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Tabs defaultValue="login" className="w-full">
                   <TabsList className="grid w-full grid-cols-2 mb-4">
-                    <TabsTrigger value="login">Login</TabsTrigger>
-                    <TabsTrigger value="register">Register</TabsTrigger>
+                    <TabsTrigger value="login">{t('common.login')}</TabsTrigger>
+                    <TabsTrigger value="register">{t('common.register')}</TabsTrigger>
                   </TabsList>
                   
                   <TabsContent value="login">
@@ -160,9 +163,9 @@ export default function AuthPage() {
                           name="username"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Username</FormLabel>
+                              <FormLabel>{t('forms.auth.username')}</FormLabel>
                               <FormControl>
-                                <Input placeholder="Enter your username" {...field} />
+                                <Input placeholder={t('forms.auth.usernamePlaceholder')} {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -173,9 +176,9 @@ export default function AuthPage() {
                           name="password"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Password</FormLabel>
+                              <FormLabel>{t('forms.auth.password')}</FormLabel>
                               <FormControl>
-                                <Input type="password" placeholder="••••••••" {...field} />
+                                <Input type="password" placeholder={t('forms.auth.passwordPlaceholder')} {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -186,7 +189,7 @@ export default function AuthPage() {
                           className="w-full" 
                           disabled={loginMutation.isPending}
                         >
-                          {loginMutation.isPending ? "Logging in..." : "Log in"}
+                          {loginMutation.isPending ? t('common.loading') : t('forms.auth.loginButton')}
                         </Button>
                         <p className="text-center text-sm text-gray-500 mt-2">
                           Admin credentials: username: "admin", password: "admin123"
@@ -216,9 +219,9 @@ export default function AuthPage() {
                           name="username"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Username</FormLabel>
+                              <FormLabel>{t('forms.auth.username')}</FormLabel>
                               <FormControl>
-                                <Input placeholder="Create a username" {...field} />
+                                <Input placeholder={t('forms.auth.usernamePlaceholder')} {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -229,9 +232,9 @@ export default function AuthPage() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Email (Optional)</FormLabel>
+                              <FormLabel>{t('forms.stars.email')}</FormLabel>
                               <FormControl>
-                                <Input type="email" placeholder="your@email.com" {...field} />
+                                <Input type="email" placeholder={t('forms.stars.emailPlaceholder')} {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -242,9 +245,9 @@ export default function AuthPage() {
                           name="password"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Password</FormLabel>
+                              <FormLabel>{t('forms.auth.password')}</FormLabel>
                               <FormControl>
-                                <Input type="password" placeholder="Create a password" {...field} />
+                                <Input type="password" placeholder={t('forms.auth.passwordPlaceholder')} {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -255,10 +258,10 @@ export default function AuthPage() {
                           className="w-full" 
                           disabled={registerMutation.isPending}
                         >
-                          {registerMutation.isPending ? "Creating account..." : "Create account"}
+                          {registerMutation.isPending ? t('common.loading') : t('forms.auth.registerButton')}
                         </Button>
                         <p className="text-center text-sm text-gray-500 mt-2">
-                          Note: New accounts don't have admin access
+                          {t('forms.auth.noAccount')}
                         </p>
                       </form>
                     </Form>
@@ -268,7 +271,7 @@ export default function AuthPage() {
               <CardFooter className="flex flex-col items-center">
                 <div className="text-center mt-2">
                   <a href="/" className="text-sm text-[#0088CC] hover:underline">
-                    Back to homepage
+                    {t('nav.home')}
                   </a>
                 </div>
               </CardFooter>

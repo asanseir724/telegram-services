@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import LanguageSwitcher from "@/components/common/language-switcher";
 
 export default function Navbar() {
   const [location] = useLocation();
   const { user, logoutMutation } = useAuth();
+  const { t, i18n } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(
     document.documentElement.classList.contains("dark")
   );
+
+  // Set RTL direction based on language on first load
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === 'fa' ? 'rtl' : 'ltr';
+  }, [i18n.language]);
 
   const toggleDarkMode = () => {
     if (isDarkMode) {
@@ -35,7 +43,7 @@ export default function Navbar() {
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
                 <span className="text-[#0088CC] dark:text-white font-bold text-xl cursor-pointer">
-                  TelegramPlus
+                  {t('common.appName')}
                 </span>
               </Link>
             </div>
@@ -46,29 +54,34 @@ export default function Navbar() {
                     ? "border-[#0088CC] text-gray-900 dark:text-white" 
                     : "border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white"
                   } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
-                  Home
+                  {t('nav.home')}
                 </a>
               </Link>
               <Link href="/#services">
                 <a className="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                  Services
+                  {t('nav.services')}
                 </a>
               </Link>
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+            
+            {/* Dark Mode Toggle */}
             <button 
               onClick={toggleDarkMode} 
-              className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5"
+              className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5 mx-2"
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
+            
             <div className="ml-3 relative">
               {user?.isAdmin ? (
                 <div className="flex items-center space-x-2">
                   <Link href="/admin">
                     <Button variant="outline" className="text-[#0088CC] dark:text-white">
-                      Admin Panel
+                      {t('nav.admin')}
                     </Button>
                   </Link>
                   <Button 
@@ -76,7 +89,7 @@ export default function Navbar() {
                     onClick={handleLogout}
                     disabled={logoutMutation.isPending}
                   >
-                    Logout
+                    {t('common.logout')}
                   </Button>
                 </div>
               ) : (
@@ -85,7 +98,7 @@ export default function Navbar() {
                     variant="outline" 
                     className="text-[#0088CC] dark:text-white bg-[#EEF6FC] dark:bg-[#0088CC]/20 hover:bg-[#0088CC] hover:text-white dark:hover:bg-[#0088CC]"
                   >
-                    Admin Login
+                    {t('common.login')}
                   </Button>
                 </Link>
               )}
@@ -115,13 +128,13 @@ export default function Navbar() {
                   : "border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                 } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
                 onClick={() => setMobileMenuOpen(false)}>
-                Home
+                {t('nav.home')}
               </a>
             </Link>
             <Link href="/#services">
               <a className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                  onClick={() => setMobileMenuOpen(false)}>
-                Services
+                {t('nav.services')}
               </a>
             </Link>
             {user?.isAdmin ? (
@@ -129,7 +142,7 @@ export default function Navbar() {
                 <Link href="/admin">
                   <a className="border-transparent text-[#0088CC] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-[#0088CC] dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                      onClick={() => setMobileMenuOpen(false)}>
-                    Admin Panel
+                    {t('nav.admin')}
                   </a>
                 </Link>
                 <button
@@ -140,14 +153,14 @@ export default function Navbar() {
                   className="border-transparent text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-red-700 block w-full text-left pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                   disabled={logoutMutation.isPending}
                 >
-                  Logout
+                  {t('common.logout')}
                 </button>
               </>
             ) : (
               <Link href="/auth">
                 <a className="mt-1 border-transparent text-[#0088CC] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-[#0088CC] dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                    onClick={() => setMobileMenuOpen(false)}>
-                  Admin Login
+                  {t('common.login')}
                 </a>
               </Link>
             )}
@@ -161,6 +174,32 @@ export default function Navbar() {
               {isDarkMode ? <Sun size={16} className="mr-2" /> : <Moon size={16} className="mr-2" />}
               {isDarkMode ? "Light Mode" : "Dark Mode"}
             </button>
+            
+            {/* Language options in mobile menu */}
+            <div className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+              <div className="flex space-x-4">
+                <button 
+                  onClick={() => {
+                    i18n.changeLanguage('fa');
+                    document.documentElement.dir = 'rtl';
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`${i18n.language === 'fa' ? 'font-bold text-[#0088CC]' : ''}`}
+                >
+                  فارسی
+                </button>
+                <button 
+                  onClick={() => {
+                    i18n.changeLanguage('en');
+                    document.documentElement.dir = 'ltr';
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`${i18n.language === 'en' ? 'font-bold text-[#0088CC]' : ''}`}
+                >
+                  English
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

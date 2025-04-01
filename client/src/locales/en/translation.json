@@ -1,0 +1,148 @@
+{
+  "common": {
+    "appName": "Telegram Plus",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "error": "Error",
+    "success": "Success"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "admin": "Admin Panel",
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "pricing": "Pricing",
+    "settings": "Settings"
+  },
+  "home": {
+    "hero": {
+      "title": "Upgrade Your Telegram Account",
+      "subtitle": "Purchase Telegram Stars and Premium with ease",
+      "ctaButton": "Buy Now"
+    },
+    "features": {
+      "title": "Why Choose Us",
+      "delivery": {
+        "title": "Fast Delivery",
+        "desc": "Get your orders delivered in the shortest time possible"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "desc": "Our support team is always ready to help you"
+      },
+      "price": {
+        "title": "Best Prices",
+        "desc": "We offer the best prices for Telegram services"
+      }
+    },
+    "services": {
+      "title": "Our Services",
+      "stars": {
+        "title": "Telegram Stars",
+        "desc": "Boost your stars to increase your account credibility"
+      },
+      "premium": {
+        "title": "Telegram Premium",
+        "desc": "Enjoy advanced Telegram features with premium membership"
+      },
+      "buyButton": "Buy Now"
+    }
+  },
+  "forms": {
+    "stars": {
+      "title": "Buy Telegram Stars",
+      "telegramId": "Telegram ID",
+      "telegramIdPlaceholder": "Enter your Telegram ID",
+      "phoneNumber": "Phone Number",
+      "phoneNumberPlaceholder": "Enter your phone number",
+      "email": "Email (Optional)",
+      "emailPlaceholder": "Enter your email",
+      "quantity": "Stars Quantity",
+      "submitButton": "Checkout"
+    },
+    "premium": {
+      "title": "Buy Telegram Premium",
+      "telegramId": "Telegram ID",
+      "telegramIdPlaceholder": "Enter your Telegram ID",
+      "phoneNumber": "Phone Number",
+      "phoneNumberPlaceholder": "Enter your phone number",
+      "email": "Email (Optional)",
+      "emailPlaceholder": "Enter your email",
+      "duration": "Duration",
+      "submitButton": "Checkout"
+    },
+    "auth": {
+      "username": "Username",
+      "usernamePlaceholder": "Enter your username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "loginButton": "Login",
+      "registerButton": "Register",
+      "noAccount": "Don't have an account?",
+      "hasAccount": "Already have an account?"
+    },
+    "validations": {
+      "required": "This field is required",
+      "telegramId": "Invalid Telegram ID",
+      "phoneNumber": "Invalid phone number",
+      "email": "Invalid email address",
+      "username": "Username must be at least 3 characters",
+      "password": "Password must be at least 6 characters"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Dashboard",
+      "totalOrders": "Total Orders",
+      "pendingOrders": "Pending Orders",
+      "completedOrders": "Completed Orders",
+      "revenue": "Revenue"
+    },
+    "orders": {
+      "title": "Order Management",
+      "id": "ID",
+      "service": "Service",
+      "telegramId": "Telegram ID",
+      "phoneNumber": "Phone Number",
+      "quantity": "Quantity",
+      "total": "Total",
+      "status": "Status",
+      "date": "Date",
+      "actions": "Actions",
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "statuses": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      }
+    },
+    "pricing": {
+      "title": "Price Settings",
+      "service": "Service",
+      "price": "Price",
+      "quantity": "Quantity",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "addNew": "Add New"
+    },
+    "settings": {
+      "title": "Settings",
+      "siteName": "Site Name",
+      "contactEmail": "Contact Email",
+      "commission": "Commission Percentage",
+      "save": "Save Settings"
+    }
+  }
+}

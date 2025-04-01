@@ -1,0 +1,148 @@
+{
+  "common": {
+    "appName": "تلگرام پلاس",
+    "login": "ورود",
+    "register": "ثبت نام",
+    "logout": "خروج",
+    "loading": "در حال بارگذاری...",
+    "submit": "ارسال",
+    "cancel": "انصراف",
+    "error": "خطا",
+    "success": "موفقیت"
+  },
+  "nav": {
+    "home": "صفحه اصلی",
+    "services": "خدمات",
+    "about": "درباره ما",
+    "contact": "تماس با ما",
+    "admin": "پنل مدیریت",
+    "dashboard": "داشبورد",
+    "orders": "سفارشات",
+    "pricing": "قیمت‌ها",
+    "settings": "تنظیمات"
+  },
+  "home": {
+    "hero": {
+      "title": "اکانت تلگرام خود را ارتقا دهید",
+      "subtitle": "استار و پریمیوم تلگرام را بدون دردسر خریداری کنید",
+      "ctaButton": "خرید حالا"
+    },
+    "features": {
+      "title": "چرا ما را انتخاب کنید",
+      "delivery": {
+        "title": "تحویل سریع",
+        "desc": "سفارشات خود را در کمترین زمان ممکن دریافت کنید"
+      },
+      "support": {
+        "title": "پشتیبانی ۲۴/۷",
+        "desc": "تیم پشتیبانی ما همیشه آماده کمک به شما است"
+      },
+      "price": {
+        "title": "قیمت مناسب",
+        "desc": "بهترین قیمت‌ها را برای خدمات تلگرام ارائه می‌دهیم"
+      }
+    },
+    "services": {
+      "title": "خدمات ما",
+      "stars": {
+        "title": "استار تلگرام",
+        "desc": "استار‌های خود را برای افزایش اعتبار حسابتان افزایش دهید"
+      },
+      "premium": {
+        "title": "پریمیوم تلگرام",
+        "desc": "از ویژگی‌های پیشرفته تلگرام با عضویت پریمیوم لذت ببرید"
+      },
+      "buyButton": "خرید کنید"
+    }
+  },
+  "forms": {
+    "stars": {
+      "title": "خرید استار تلگرام",
+      "telegramId": "آیدی تلگرام",
+      "telegramIdPlaceholder": "آیدی تلگرام خود را وارد کنید",
+      "phoneNumber": "شماره تلفن",
+      "phoneNumberPlaceholder": "شماره تلفن خود را وارد کنید",
+      "email": "ایمیل (اختیاری)",
+      "emailPlaceholder": "ایمیل خود را وارد کنید",
+      "quantity": "تعداد استار",
+      "submitButton": "پرداخت"
+    },
+    "premium": {
+      "title": "خرید پریمیوم تلگرام",
+      "telegramId": "آیدی تلگرام",
+      "telegramIdPlaceholder": "آیدی تلگرام خود را وارد کنید",
+      "phoneNumber": "شماره تلفن",
+      "phoneNumberPlaceholder": "شماره تلفن خود را وارد کنید",
+      "email": "ایمیل (اختیاری)",
+      "emailPlaceholder": "ایمیل خود را وارد کنید",
+      "duration": "مدت زمان",
+      "submitButton": "پرداخت"
+    },
+    "auth": {
+      "username": "نام کاربری",
+      "usernamePlaceholder": "نام کاربری خود را وارد کنید",
+      "password": "رمز عبور",
+      "passwordPlaceholder": "رمز عبور خود را وارد کنید",
+      "loginButton": "ورود",
+      "registerButton": "ثبت نام",
+      "noAccount": "حساب کاربری ندارید؟",
+      "hasAccount": "حساب کاربری دارید؟"
+    },
+    "validations": {
+      "required": "این فیلد الزامی است",
+      "telegramId": "آیدی تلگرام معتبر نیست",
+      "phoneNumber": "شماره تلفن معتبر نیست",
+      "email": "ایمیل معتبر نیست",
+      "username": "نام کاربری باید حداقل ۳ کاراکتر باشد",
+      "password": "رمز عبور باید حداقل ۶ کاراکتر باشد"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "داشبورد",
+      "totalOrders": "کل سفارشات",
+      "pendingOrders": "سفارشات در انتظار",
+      "completedOrders": "سفارشات تکمیل شده",
+      "revenue": "درآمد"
+    },
+    "orders": {
+      "title": "مدیریت سفارشات",
+      "id": "شناسه",
+      "service": "سرویس",
+      "telegramId": "آیدی تلگرام",
+      "phoneNumber": "شماره تلفن",
+      "quantity": "تعداد",
+      "total": "مبلغ کل",
+      "status": "وضعیت",
+      "date": "تاریخ",
+      "actions": "عملیات",
+      "view": "نمایش",
+      "edit": "ویرایش",
+      "delete": "حذف",
+      "statuses": {
+        "pending": "در انتظار",
+        "processing": "در حال پردازش",
+        "completed": "تکمیل شده",
+        "cancelled": "لغو شده"
+      }
+    },
+    "pricing": {
+      "title": "تنظیمات قیمت",
+      "service": "سرویس",
+      "price": "قیمت",
+      "quantity": "تعداد",
+      "actions": "عملیات",
+      "edit": "ویرایش",
+      "delete": "حذف",
+      "save": "ذخیره",
+      "addNew": "افزودن جدید"
+    },
+    "settings": {
+      "title": "تنظیمات",
+      "siteName": "نام سایت",
+      "contactEmail": "ایمیل تماس",
+      "commission": "درصد کمیسیون",
+      "save": "ذخیره تنظیمات"
+    }
+  }
+}
