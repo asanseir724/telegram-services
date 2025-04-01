@@ -1,0 +1,254 @@
+/**
+ * All of the CSS for the admin-specific functionality of the plugin.
+ *
+ * @package    Telegram_Services_WC
+ * @subpackage Telegram_Services_WC/admin/css
+ */
+
+/* Dashboard */
+.telegram-services-dashboard {
+    margin-top: 20px;
+}
+
+.telegram-services-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.telegram-services-stat-card {
+    flex: 1 1 calc(25% - 15px);
+    min-width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.telegram-services-stat-card h3 {
+    margin-top: 0;
+    color: #23282d;
+    font-size: 14px;
+}
+
+.telegram-services-stat-value {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.telegram-services-stat-card.orders-total {
+    border-top: 4px solid #0073aa;
+}
+
+.telegram-services-stat-card.orders-pending {
+    border-top: 4px solid #ffba00;
+}
+
+.telegram-services-stat-card.orders-completed {
+    border-top: 4px solid #46b450;
+}
+
+.telegram-services-stat-card.revenue {
+    border-top: 4px solid #8774e1;
+}
+
+.telegram-services-recent-orders {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.telegram-services-recent-orders h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.telegram-services-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.telegram-services-orders-table th {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.telegram-services-orders-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.telegram-services-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.telegram-services-status.pending {
+    background-color: #ffeba0;
+    color: #856404;
+}
+
+.telegram-services-status.processing {
+    background-color: #b7eaff;
+    color: #004e66;
+}
+
+.telegram-services-status.completed {
+    background-color: #c6e6c6;
+    color: #155724;
+}
+
+.telegram-services-status.failed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Orders */
+.telegram-services-orders-list {
+    margin-top: 20px;
+}
+
+.telegram-services-filters {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.telegram-services-pagination {
+    margin-top: 20px;
+}
+
+.telegram-services-pagination .pagination-links {
+    float: right;
+}
+
+/* Settings */
+.telegram-services-settings-form {
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.telegram-services-settings-form .form-table th {
+    width: 200px;
+}
+
+/* Text Editor */
+.telegram-services-text-editor {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.telegram-services-text-editor-sidebar {
+    flex: 0 0 220px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.telegram-services-text-editor-content {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.telegram-services-language-selector {
+    margin-bottom: 20px;
+}
+
+.telegram-services-language-selector select {
+    width: 100%;
+}
+
+.telegram-services-text-groups {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.telegram-services-text-groups li {
+    margin-bottom: 8px;
+}
+
+.telegram-services-text-groups li a {
+    display: block;
+    padding: 8px 10px;
+    text-decoration: none;
+    color: #23282d;
+    border-left: 3px solid transparent;
+}
+
+.telegram-services-text-groups li a:hover,
+.telegram-services-text-groups li a.active {
+    background-color: #f8f9fa;
+    border-left-color: #0073aa;
+}
+
+.telegram-services-text-fields {
+    display: none;
+}
+
+.telegram-services-text-fields.active {
+    display: block;
+}
+
+.telegram-services-text-fields h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.telegram-services-text-field {
+    margin-bottom: 20px;
+}
+
+.telegram-services-text-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.telegram-services-text-field input[type="text"],
+.telegram-services-text-field textarea {
+    width: 100%;
+}
+
+.telegram-services-text-field textarea {
+    min-height: 100px;
+}
+
+/* Order Meta Box */
+.telegram-order-details p {
+    margin: 0 0 10px;
+}
+
+.telegram-service-status {
+    margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .telegram-services-text-editor {
+        flex-direction: column;
+    }
+    
+    .telegram-services-text-editor-sidebar {
+        flex: 0 0 auto;
+    }
+}

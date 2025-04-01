@@ -1,0 +1,20 @@
+/**
+ * RTL styles for the public-facing functionality of the plugin.
+ *
+ * @package    Telegram_Services_WC
+ * @subpackage Telegram_Services_WC/public/css
+ */
+
+.telegram-service-features li {
+    padding: 6px 25px 6px 0;
+}
+
+.telegram-service-features li:before {
+    left: auto;
+    right: 0;
+}
+
+#telegram_checkout_fields {
+    border-left: none;
+    border-right: 4px solid #0088cc;
+}
