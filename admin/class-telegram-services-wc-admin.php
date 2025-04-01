@@ -391,6 +391,8 @@ class Telegram_Services_WC_Admin {
         include TELEGRAM_SERVICES_WC_PLUGIN_DIR . 'admin/partials/text-editor-page.php';
     }
 
+
+
     /**
      * Process the text editor form.
      *

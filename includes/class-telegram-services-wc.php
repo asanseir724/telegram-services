@@ -163,7 +163,8 @@ class Telegram_Services_WC {
         $this->loader->add_action('admin_init', $plugin_admin, 'register_settings');
 
         // Add settings link on plugins page
-        $this->loader->add_filter('plugin_action_links_' . plugin_basename(TELEGRAM_SERVICES_WC_PLUGIN_DIR . 'telegram-services-wc.php'), $plugin_admin, 'add_plugin_settings_link');
+        $plugin_file = plugin_basename(dirname(TELEGRAM_SERVICES_WC_PLUGIN_DIR) . '/telegram-services-wc.php');
+        $this->loader->add_filter('plugin_action_links_' . $plugin_file, $plugin_admin, 'add_plugin_settings_link');
 
         // Order meta boxes
         $this->loader->add_action('add_meta_boxes', $plugin_admin, 'add_telegram_order_meta_boxes');
