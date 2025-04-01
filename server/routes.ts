@@ -294,6 +294,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const translationSettings = settings.filter(s => s.key.startsWith('translation_'));
     res.json(translationSettings);
   });
+  
+  // Get all custom translations for a specific language (Public)
+  app.get("/api/translations/:lang", async (req, res) => {
+    const lang = req.params.lang;
+    
+    // Only allow 'en' or 'fa' languages
+    if (lang !== 'en' && lang !== 'fa') {
+      return res.status(400).json({ message: "Invalid language code" });
+    }
+    
+    const settings = await storage.getSettings();
+    const prefix = `translation_${lang}_`;
+    
+    // Filter for translations for the specified language
+    const translations = settings.filter(s => s.key.startsWith(prefix));
+    
+    // Convert to a format that can be easily merged with i18next resources
+    const result: Record<string, string> = {};
+    
+    translations.forEach(translation => {
+      // Extract the actual key part after the prefix
+      const keyPart = translation.key.substring(prefix.length);
+      result[keyPart] = translation.value;
+    });
+    
+    res.json(result);
+  });
 
   // Create or update a translation (Admin only)
   app.post("/api/settings/translation", async (req, res) => {

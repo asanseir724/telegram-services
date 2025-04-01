@@ -211,7 +211,12 @@
       "success": "Success",
       "successMessage": "Text updated successfully",
       "error": "Error",
-      "overrideWarning": "This key has already been customized. Saving again will override the previous value."
+      "overrideWarning": "This key has already been customized. Saving again will override the previous value.",
+      "filterByCategory": "Filter by section",
+      "allCategories": "All sections",
+      "modifiedOnly": "Modified only",
+      "clearFilters": "Clear filters",
+      "keysFound": "keys found"
     },
     "orders": {
       "title": "Order Management",
