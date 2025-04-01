@@ -1,104 +1,94 @@
-# Telegram Stars & Premium Services Platform
+# Telegram Services for WooCommerce
 
-این یک پلتفرم وب برای فروش خدمات Telegram Stars و Premium با پنل مدیریت برای مدیریت سفارشات و تنظیم قیمت‌ها است. 
-This is a web platform for selling Telegram Stars and Premium services with an admin panel for order management and price configuration.
+A WordPress plugin for selling Telegram Stars and Premium services through WooCommerce.
 
-## ویژگی‌ها (Features)
+## Description
 
-- پشتیبانی از دو زبان فارسی و انگلیسی (Bilingual support - English & Persian)
-- تغییر خودکار واحد پول بر اساس زبان انتخابی (دلار/تومان) (Automatic currency change based on selected language)
-- پنل مدیریت برای کنترل سفارشات و قیمت‌ها (Admin panel for order and pricing management)
-- ویرایشگر متن برای تغییر همه متن‌های سایت (Text editor for customizing all website text)
-- طراحی واکنش‌گرا و زیبا (Responsive and beautiful design)
-- پشتیبانی از راست به چپ (RTL) و چپ به راست (LTR) (RTL & LTR Support)
+The Telegram Services for WooCommerce plugin allows you to sell Telegram Stars and Premium subscriptions through your WordPress site, leveraging the power of WooCommerce for order handling and payment processing.
 
-## تکنولوژی‌ها (Technologies)
+### Key Features
 
-- **Frontend**: React, TypeScript, TailwindCSS, Shadcn/UI
-- **Backend**: Node.js, Express
-- **State Management**: TanStack Query (React Query)
-- **i18n**: react-i18next
-- **Form Handling**: react-hook-form, zod
+- Sell Telegram Stars and Premium subscriptions as WooCommerce products
+- Collect required Telegram information at checkout (Telegram ID and phone number)
+- Multi-language support (English and Persian/Farsi)
+- Admin dashboard with sales statistics
+- Order management system
+- Text editor to customize all text content in both languages
+- Right-to-left (RTL) support for Persian/Farsi
+- Automatic currency conversion between USD and Toman based on language
 
-## پیش‌نیازها (Prerequisites)
+## Installation
 
-- Node.js 18 یا بالاتر (Node.js 18 or higher)
-- npm یا yarn (npm or yarn)
+1. Upload the `telegram-services-wc` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Ensure WooCommerce is installed and activated
+4. Configure the plugin settings from the 'Telegram Services' menu in the WordPress admin
 
-## نصب و راه‌اندازی (Installation & Setup)
+## Requirements
 
-### 1. کلون کردن پروژه (Clone the repository)
+- WordPress 5.7 or higher
+- WooCommerce 6.0 or higher
+- PHP 7.4 or higher
 
-```bash
-git clone https://github.com/your-username/telegram-services-platform.git
-cd telegram-services-platform
-```
+## Usage
 
-### 2. نصب وابستگی‌ها (Install dependencies)
+### Shortcodes
 
-```bash
-npm install
-```
+The plugin provides the following shortcodes:
 
-یا با استفاده از yarn:
+- `[telegram_services_grid]` - Displays a grid of Telegram services (Stars and Premium)
+- `[telegram_stars_products]` - Displays only Stars products
+- `[telegram_premium_products]` - Displays only Premium products
 
-```bash
-yarn install
-```
+### Shortcode Attributes
 
-### 3. اجرای پروژه در حالت توسعه (Run in development mode)
-
-```bash
-npm run dev
-```
-
-یا با استفاده از yarn:
-
-```bash
-yarn dev
-```
-
-برنامه در آدرس http://localhost:5000 قابل دسترسی خواهد بود.
-
-## ساختار پروژه (Project Structure)
+The product shortcodes accept the following attributes:
 
 ```
-.
-├── client/               # Frontend React application
-│   ├── src/
-│   │   ├── components/   # UI components
-│   │   ├── hooks/        # Custom React hooks
-│   │   ├── lib/          # Utility functions
-│   │   ├── locales/      # Translation files (en & fa)
-│   │   ├── pages/        # Page components
-│   │   └── ...
-├── server/               # Backend Express server
-│   ├── index.ts          # Server entry point
-│   ├── routes.ts         # API routes
-│   ├── storage.ts        # Data storage
-│   └── ...
-├── shared/               # Shared code between client and server
-│   └── schema.ts         # Database schema and types
-└── ...
+[telegram_stars_products columns="3" orderby="price" order="asc"]
 ```
 
-## حساب مدیریت (Admin Account)
+- `columns` - Number of columns (default: 3)
+- `orderby` - Sort by 'price', 'quantity', or 'title' (default: 'price')
+- `order` - Sort order 'asc' or 'desc' (default: 'asc')
 
-برای دسترسی به پنل مدیریت، از اطلاعات زیر استفاده کنید:
+## Settings
 
-- **Username**: admin
-- **Password**: admin123
+Configure the plugin settings from the 'Telegram Services > Settings' menu:
 
-## قابلیت‌های پنل مدیریت (Admin Panel Features)
+- Commission percentage - Your commission on each service sale
+- USD to Toman exchange rate - For currency conversion
+- Data removal - Choose whether to remove data on plugin uninstall
 
-- مدیریت سفارشات (Order Management)
-- تنظیم قیمت سرویس‌ها (Service Pricing)
-- ویرایش متن‌های سایت (Website Text Editing)
-- تنظیمات عمومی (General Settings)
+## Text Editor
 
-## امکانات بیشتر (Additional Features)
+Use the text editor at 'Telegram Services > Text Editor' to customize all text content in both English and Persian:
 
-- **سیستم زبان دوگانه**: پشتیبانی کامل از دو زبان فارسی و انگلیسی
-- **واحد پول خودکار**: تغییر خودکار واحد پول بر اساس زبان (دلار برای انگلیسی، تومان برای فارسی)
-- **ویرایشگر متن پیشرفته**: امکان جستجو و فیلتر کردن متن‌ها بر اساس بخش‌های مختلف سایت
-- **طراحی واکنش‌گرا**: نمایش مناسب در تمام دستگاه‌ها (موبایل، تبلت و دسکتاپ)
+1. Select a language from the dropdown
+2. Navigate through the text groups using the sidebar
+3. Edit the text fields as needed
+4. Save changes
+
+## Credits
+
+- Developed by [Amir Sanseir](https://github.com/asanseir724)
+- Plugin URL: [https://github.com/asanseir724/telegram-services](https://github.com/asanseir724/telegram-services)
+
+## License
+
+This plugin is licensed under the GPL v2 or later.
+
+```
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+```
