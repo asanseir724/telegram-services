@@ -70,6 +70,30 @@ class Telegram_Services_WC {
         $this->define_public_hooks();
         $this->define_product_hooks();
         $this->define_order_hooks();
+        $this->setup_updater();
+    }
+    
+    /**
+     * Setup the GitHub updater.
+     *
+     * @since    1.0.0
+     * @access   private
+     */
+    private function setup_updater() {
+        // Plugin variables for the updater
+        $plugin_slug = plugin_basename(dirname(TELEGRAM_SERVICES_WC_PLUGIN_DIR) . '/telegram-services-wc.php');
+        $github_username = 'asanseir724';
+        $github_repo = 'telegram-services';
+        $update_path = 'https://github.com/' . $github_username . '/' . $github_repo;
+        
+        // Initialize the updater
+        new Telegram_Services_WC_Updater(
+            $this->version,
+            $update_path,
+            $plugin_slug,
+            $github_username,
+            $github_repo
+        );
     }
 
     /**
@@ -83,6 +107,7 @@ class Telegram_Services_WC {
      * - Telegram_Services_WC_Public. Defines all hooks for the public side of the site.
      * - Telegram_Services_WC_Product. Defines product-related functionality.
      * - Telegram_Services_WC_Order. Defines order-related functionality.
+     * - Telegram_Services_WC_Updater. Handles automatic updates from GitHub.
      *
      * Create an instance of the loader which will be used to register the hooks
      * with WordPress.
@@ -123,6 +148,11 @@ class Telegram_Services_WC {
          * The class responsible for order-related functionality.
          */
         require_once TELEGRAM_SERVICES_WC_PLUGIN_DIR . 'includes/class-telegram-services-wc-order.php';
+
+        /**
+         * The class responsible for automatic updates from GitHub.
+         */
+        require_once TELEGRAM_SERVICES_WC_PLUGIN_DIR . 'includes/class-telegram-services-wc-updater.php';
 
         $this->loader = new Telegram_Services_WC_Loader();
     }
