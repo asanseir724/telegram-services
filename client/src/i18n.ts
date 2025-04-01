@@ -6,6 +6,22 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import translationEN from './locales/en/translation.json';
 import translationFA from './locales/fa/translation.json';
 
+// Define currency information for each language
+export const currencyConfig = {
+  en: {
+    code: 'USD',
+    symbol: '$',
+    rate: 1, // Base rate (USD)
+    format: (price: number) => `$${price.toFixed(2)}`
+  },
+  fa: {
+    code: 'IRR',
+    symbol: 'تومان',
+    rate: 50000, // Example conversion rate (1 USD = 50,000 Toman)
+    format: (price: number) => `${Math.round(price * 50000).toLocaleString('fa-IR')} تومان`
+  }
+};
+
 // Initial resources with base translations
 const resources = {
   en: {

@@ -5,9 +5,11 @@ import { Star, Crown, CheckCheck, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Service } from "@shared/schema";
 import { useTranslation } from "react-i18next";
+import { useCurrency } from "@/hooks/use-currency";
 
 export default function Services() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { formatPrice } = useCurrency();
   
   const { data: starsServices, isLoading: loadingStars } = useQuery<Service[]>({
     queryKey: ["/api/services", "stars"],
@@ -72,7 +74,7 @@ export default function Services() {
                     {!loadingStars && starsBasicPackage && (
                       <div className="flex items-baseline">
                         <p className="text-2xl font-semibold text-[#0088CC]">
-                          ${starsBasicPackage.price.toFixed(2)}
+                          {formatPrice(starsBasicPackage.price)}
                         </p>
                         <p className="rtl:mr-2 ltr:ml-2 text-sm text-gray-500 dark:text-gray-300">
                           {t('services.stars.per100')}
@@ -122,7 +124,7 @@ export default function Services() {
                     {!loadingPremium && premiumBasicPackage && (
                       <div className="flex items-baseline">
                         <p className="text-2xl font-semibold text-[#0088CC]">
-                          ${premiumBasicPackage.price.toFixed(2)}
+                          {formatPrice(premiumBasicPackage.price)}
                         </p>
                         <p className="rtl:mr-2 ltr:ml-2 text-sm text-gray-500 dark:text-gray-300">
                           {t('services.premium.perMonth')}
