@@ -14,8 +14,6 @@
  * Domain Path: /languages
  * WC requires at least: 6.0
  * WC tested up to: 8.4
- *
- * @package Telegram_Services_WC
  */
 
 // If this file is called directly, abort.
@@ -70,29 +68,12 @@ function telegram_services_wc_woocommerce_missing_notice() {
 
 /**
  * Begin execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
  */
 function run_telegram_services_wc() {
-    // Check if WooCommerce is active
     if (!telegram_services_wc_check_woocommerce()) {
         return;
     }
-
-    /**
-     * The core plugin class that is used to define internationalization,
-     * admin-specific hooks, and public-facing site hooks.
-     */
     require_once TELEGRAM_SERVICES_WC_PLUGIN_DIR . 'includes/class-telegram-services-wc.php';
-
-    /**
-     * The class responsible for orchestrating the actions and filters of the
-     * core plugin.
-     */
     $plugin = new Telegram_Services_WC();
     $plugin->run();
 }
