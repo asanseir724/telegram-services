@@ -65,13 +65,13 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 {navItems.map((item) => (
                   <Link href={item.path} key={item.path}>
-                    <a className={`${
+                    <span className={`${
                       location === item.path 
                         ? "border-[#0088CC] text-gray-900 dark:text-white" 
                         : "border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white"
-                      } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+                      } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer`}>
                       {item.label}
-                    </a>
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -117,22 +117,22 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
             <div className="pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
                 <Link href={item.path} key={item.path}>
-                  <a className={`${
+                  <span className={`${
                     location === item.path 
                       ? "bg-[#EEF6FC] dark:bg-[#0088CC]/20 border-[#0088CC] text-[#0088CC] dark:text-white" 
                       : "border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                    } flex items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
+                    } flex items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium cursor-pointer`}
                     onClick={() => setMobileMenuOpen(false)}>
                     {item.icon}
                     <span className="ml-2">{item.label}</span>
-                  </a>
+                  </span>
                 </Link>
               ))}
               <Link href="/">
-                <a className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white flex items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                <span className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white flex items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium cursor-pointer"
                    onClick={() => setMobileMenuOpen(false)}>
                   View Site
-                </a>
+                </span>
               </Link>
               <button
                 onClick={() => {

@@ -10,11 +10,13 @@ import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import StarsForm from "@/components/forms/stars-form";
 import PremiumForm from "@/components/forms/premium-form";
+import { useTranslation } from "react-i18next";
 
 export default function ServicePage() {
   const params = useParams<{ type: string }>();
   const [location, navigate] = useLocation();
   const [formOpen, setFormOpen] = useState(false);
+  const { t } = useTranslation();
   
   const serviceType = params.type;
   
@@ -35,44 +37,53 @@ export default function ServicePage() {
     },
   });
   
-  // Service details
+  // Service benefits and features keys (for translations)
+  const starsBenefitsKeys = [
+    'service.stars.benefits.visibility',
+    'service.stars.benefits.forwarded', 
+    'service.stars.benefits.ranking',
+    'service.stars.benefits.standout',
+    'service.stars.benefits.credibility'
+  ];
+  
+  const starsFeaturesKeys = [
+    'service.stars.features.appearance',
+    'service.stars.features.more',
+    'service.stars.features.visible',
+    'service.stars.features.attract'
+  ];
+  
+  const premiumBenefitsKeys = [
+    'service.premium.benefits.upload',
+    'service.premium.benefits.follow',
+    'service.premium.benefits.folders',
+    'service.premium.benefits.pin',
+    'service.premium.benefits.links'
+  ];
+  
+  const premiumFeaturesKeys = [
+    'service.premium.features.stickers',
+    'service.premium.features.ads',
+    'service.premium.features.profile',
+    'service.premium.features.badges',
+    'service.premium.features.voice'
+  ];
+  
+  // Service details with translations
   const serviceDetails = {
     stars: {
-      title: "Telegram Stars",
-      description: "Telegram Stars help increase channel visibility. They're shown next to your channel name in shared messages, searches, and the chat list.",
+      title: t('home.services.stars.title'),
+      description: t('home.services.stars.desc'),
       icon: <Star className="h-10 w-10 text-white" />,
-      benefits: [
-        "Increase channel visibility in Telegram search",
-        "Get displayed prominently in forwarded messages",
-        "Gain higher ranking in recommendations",
-        "Stand out in the chat list of subscribers",
-        "Improve credibility of your channel"
-      ],
-      features: [
-        "Stars appear next to your channel name",
-        "More stars mean more prominence",
-        "Stars are visible to all Telegram users",
-        "Attract more subscribers to your channel"
-      ]
+      benefits: starsBenefitsKeys.map(key => t(key)),
+      features: starsFeaturesKeys.map(key => t(key))
     },
     premium: {
-      title: "Telegram Premium",
-      description: "Upgrade your Telegram experience with Premium. Get access to exclusive features and capabilities that enhance your messaging experience.",
+      title: t('home.services.premium.title'),
+      description: t('home.services.premium.desc'),
       icon: <Crown className="h-10 w-10 text-white" />,
-      benefits: [
-        "Upload files up to 4GB (vs 2GB for non-premium)",
-        "Follow up to 1000 channels (vs 500 for non-premium)",
-        "Create up to 20 folders with 200 chats each",
-        "Pin up to 10 chats in your main list",
-        "Reserve up to 10 public t.me links"
-      ],
-      features: [
-        "Access to exclusive stickers and reactions",
-        "No ads in public channels",
-        "Animated profile pictures",
-        "Premium badges next to your name",
-        "Voice-to-text conversion for voice messages"
-      ]
+      benefits: premiumBenefitsKeys.map(key => t(key)),
+      features: premiumFeaturesKeys.map(key => t(key))
     }
   };
   
@@ -81,7 +92,7 @@ export default function ServicePage() {
   return (
     <>
       <Helmet>
-        <title>{details.title} - TelegramPlus</title>
+        <title>{details.title} - {t('common.appName')}</title>
         <meta name="description" content={details.description} />
       </Helmet>
       
@@ -95,7 +106,7 @@ export default function ServicePage() {
               <div className="md:flex md:items-center md:justify-between">
                 <div className="md:w-3/5">
                   <div className="flex items-center mb-4">
-                    <div className="flex-shrink-0 bg-[#0088CC] rounded-md p-3 mr-4">
+                    <div className="flex-shrink-0 bg-[#0088CC] rounded-md p-3 rtl:ml-4 ltr:mr-4">
                       {details.icon}
                     </div>
                     <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
@@ -111,17 +122,17 @@ export default function ServicePage() {
                       onClick={() => setFormOpen(true)}
                       className="px-8 py-3"
                     >
-                      {isStars ? "Buy Telegram Stars" : "Subscribe to Premium"}
+                      {isStars ? t('home.services.stars.buyButton') : t('home.services.premium.buyButton')}
                     </Button>
                   </div>
                 </div>
                 <div className="mt-8 md:mt-0 md:w-2/5 flex justify-center">
                   <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-xs w-full">
                     <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-4">
-                      {isStars ? "Available Packages" : "Subscription Options"}
+                      {isStars ? t('service.stars.packages') : t('service.premium.options')}
                     </h3>
                     {isLoading ? (
-                      <p>Loading packages...</p>
+                      <p>{t('common.loading')}</p>
                     ) : (
                       <ul className="space-y-2">
                         {services?.map((service) => (
@@ -147,15 +158,15 @@ export default function ServicePage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 <h2 className="text-base text-[#0088CC] font-semibold tracking-wide uppercase">
-                  Features
+                  {t('home.features.title')}
                 </h2>
                 <p className="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-                  {isStars ? "Why Telegram Stars Matter" : "Premium Benefits"}
+                  {isStars ? t('service.stars.whyMatter') : t('service.premium.benefitsTitle')}
                 </p>
                 <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 mx-auto">
                   {isStars 
-                    ? "Enhance your channel's visibility and growth with Telegram Stars" 
-                    : "Unlock all the exclusive features Telegram Premium has to offer"}
+                    ? t('service.stars.enhance') 
+                    : t('service.premium.unlock')}
                 </p>
               </div>
               
@@ -164,12 +175,12 @@ export default function ServicePage() {
                   <Card>
                     <CardContent className="p-6">
                       <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-                        {isStars ? "Benefits of Stars" : "Premium Advantages"}
+                        {isStars ? t('service.stars.benefitsTitle') : t('service.premium.advantagesTitle')}
                       </h3>
                       <ul className="space-y-3">
                         {details.benefits.map((benefit, index) => (
                           <li key={index} className="flex items-start">
-                            <CheckCheck className="h-5 w-5 text-[#0088CC] mr-2 flex-shrink-0" />
+                            <CheckCheck className="h-5 w-5 text-[#0088CC] rtl:ml-2 ltr:mr-2 flex-shrink-0" />
                             <span className="text-gray-600 dark:text-gray-300">{benefit}</span>
                           </li>
                         ))}
@@ -180,12 +191,12 @@ export default function ServicePage() {
                   <Card>
                     <CardContent className="p-6">
                       <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-                        {isStars ? "How Stars Work" : "Exclusive Features"}
+                        {isStars ? t('service.stars.howWork') : t('service.premium.exclusiveTitle')}
                       </h3>
                       <ul className="space-y-3">
                         {details.features.map((feature, index) => (
                           <li key={index} className="flex items-start">
-                            <CheckCheck className="h-5 w-5 text-[#0088CC] mr-2 flex-shrink-0" />
+                            <CheckCheck className="h-5 w-5 text-[#0088CC] rtl:ml-2 ltr:mr-2 flex-shrink-0" />
                             <span className="text-gray-600 dark:text-gray-300">{feature}</span>
                           </li>
                         ))}
@@ -201,7 +212,7 @@ export default function ServicePage() {
                   onClick={() => setFormOpen(true)}
                   className="px-8 py-3"
                 >
-                  {isStars ? "Buy Telegram Stars Now" : "Get Telegram Premium Now"}
+                  {isStars ? t('service.stars.buyNow') : t('service.premium.getNow')}
                 </Button>
               </div>
             </div>

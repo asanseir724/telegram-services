@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Star, Crown, CheckCheck, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Service } from "@shared/schema";
+import { useTranslation } from "react-i18next";
 
 export default function Services() {
+  const { t } = useTranslation();
+  
   const { data: starsServices, isLoading: loadingStars } = useQuery<Service[]>({
     queryKey: ["/api/services", "stars"],
     queryFn: async () => {
@@ -28,16 +31,28 @@ export default function Services() {
   const starsBasicPackage = starsServices?.find(service => service.quantity === 100);
   const premiumBasicPackage = premiumServices?.find(service => service.quantity === 1);
 
+  const starsFeatures = [
+    { key: 'home.services.stars.features.visibility' },
+    { key: 'home.services.stars.features.engagement' },
+    { key: 'home.services.stars.features.ranking' }
+  ];
+
+  const premiumFeatures = [
+    { key: 'home.services.premium.features.files' },
+    { key: 'home.services.premium.features.channels' },
+    { key: 'home.services.premium.features.stickers' }
+  ];
+
   return (
     <section id="services" className="py-12 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-base text-[#0088CC] font-semibold tracking-wide uppercase">Services</h2>
+          <h2 className="text-base text-[#0088CC] font-semibold tracking-wide uppercase">{t('home.services.title')}</h2>
           <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Choose Your Service
+            {t('home.services.subtitle')}
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto">
-            Select one of our premium services to enhance your Telegram experience.
+            {t('home.services.desc')}
           </p>
         </div>
 
@@ -50,17 +65,17 @@ export default function Services() {
                   <div className="flex-shrink-0 bg-[#0088CC] rounded-md p-3">
                     <Star className="h-6 w-6 text-white" />
                   </div>
-                  <div className="ml-5 w-0 flex-1">
+                  <div className="rtl:mr-5 ltr:ml-5 w-0 flex-1">
                     <h3 className="text-lg font-medium text-gray-900 dark:text-white truncate">
-                      Telegram Stars
+                      {t('home.services.stars.title')}
                     </h3>
                     {!loadingStars && starsBasicPackage && (
                       <div className="flex items-baseline">
                         <p className="text-2xl font-semibold text-[#0088CC]">
                           ${starsBasicPackage.price.toFixed(2)}
                         </p>
-                        <p className="ml-2 text-sm text-gray-500 dark:text-gray-300">
-                          per 100 stars
+                        <p className="rtl:mr-2 ltr:ml-2 text-sm text-gray-500 dark:text-gray-300">
+                          {t('home.services.stars.per100')}
                         </p>
                       </div>
                     )}
@@ -68,36 +83,28 @@ export default function Services() {
                 </div>
                 <div className="mt-4">
                   <p className="text-gray-600 dark:text-gray-300">
-                    Boost your channel visibility with Telegram Stars. Get more engagement and reach a wider audience.
+                    {t('home.services.stars.desc')}
                   </p>
                   <ul className="mt-4 space-y-2">
-                    <li className="flex items-start">
-                      <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
-                      <p className="ml-3 text-sm text-gray-700 dark:text-gray-300">
-                        Increase channel visibility
-                      </p>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
-                      <p className="ml-3 text-sm text-gray-700 dark:text-gray-300">
-                        Boost engagement
-                      </p>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
-                      <p className="ml-3 text-sm text-gray-700 dark:text-gray-300">
-                        Higher rankings in recommendations
-                      </p>
-                    </li>
+                    {starsFeatures.map((feature, index) => (
+                      <li key={index} className="flex items-start">
+                        <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
+                        <p className="rtl:mr-3 ltr:ml-3 text-sm text-gray-700 dark:text-gray-300">
+                          {t(feature.key)}
+                        </p>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </CardContent>
               <CardFooter className="bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
-                <Link href="/services/stars">
-                  <Button variant="link" className="w-full text-[#0088CC] hover:text-[#0088CC]/80 dark:hover:text-white/80 flex justify-center items-center">
-                    Buy Telegram Stars <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <Button 
+                  variant="link" 
+                  className="w-full text-[#0088CC] hover:text-[#0088CC]/80 dark:hover:text-white/80 flex justify-center items-center"
+                  onClick={() => window.location.href = "/services/stars"}
+                >
+                  {t('home.services.stars.buyButton')} <ArrowRight className="rtl:mr-2 rtl:rotate-180 ltr:ml-2 h-4 w-4" />
+                </Button>
               </CardFooter>
             </Card>
 
@@ -108,17 +115,17 @@ export default function Services() {
                   <div className="flex-shrink-0 bg-[#0088CC] rounded-md p-3">
                     <Crown className="h-6 w-6 text-white" />
                   </div>
-                  <div className="ml-5 w-0 flex-1">
+                  <div className="rtl:mr-5 ltr:ml-5 w-0 flex-1">
                     <h3 className="text-lg font-medium text-gray-900 dark:text-white truncate">
-                      Telegram Premium
+                      {t('home.services.premium.title')}
                     </h3>
                     {!loadingPremium && premiumBasicPackage && (
                       <div className="flex items-baseline">
                         <p className="text-2xl font-semibold text-[#0088CC]">
                           ${premiumBasicPackage.price.toFixed(2)}
                         </p>
-                        <p className="ml-2 text-sm text-gray-500 dark:text-gray-300">
-                          per month
+                        <p className="rtl:mr-2 ltr:ml-2 text-sm text-gray-500 dark:text-gray-300">
+                          {t('home.services.premium.perMonth')}
                         </p>
                       </div>
                     )}
@@ -126,36 +133,28 @@ export default function Services() {
                 </div>
                 <div className="mt-4">
                   <p className="text-gray-600 dark:text-gray-300">
-                    Unlock exclusive features with Telegram Premium. Get enhanced messaging experience and additional benefits.
+                    {t('home.services.premium.desc')}
                   </p>
                   <ul className="mt-4 space-y-2">
-                    <li className="flex items-start">
-                      <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
-                      <p className="ml-3 text-sm text-gray-700 dark:text-gray-300">
-                        Upload larger files
-                      </p>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
-                      <p className="ml-3 text-sm text-gray-700 dark:text-gray-300">
-                        Follow more channels
-                      </p>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
-                      <p className="ml-3 text-sm text-gray-700 dark:text-gray-300">
-                        Exclusive stickers and reactions
-                      </p>
-                    </li>
+                    {premiumFeatures.map((feature, index) => (
+                      <li key={index} className="flex items-start">
+                        <CheckCheck className="flex-shrink-0 h-5 w-5 text-[#0088CC]" />
+                        <p className="rtl:mr-3 ltr:ml-3 text-sm text-gray-700 dark:text-gray-300">
+                          {t(feature.key)}
+                        </p>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </CardContent>
               <CardFooter className="bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
-                <Link href="/services/premium">
-                  <Button variant="link" className="w-full text-[#0088CC] hover:text-[#0088CC]/80 dark:hover:text-white/80 flex justify-center items-center">
-                    Subscribe to Premium <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <Button 
+                  variant="link" 
+                  className="w-full text-[#0088CC] hover:text-[#0088CC]/80 dark:hover:text-white/80 flex justify-center items-center"
+                  onClick={() => window.location.href = "/services/premium"}
+                >
+                  {t('home.services.premium.buyButton')} <ArrowRight className="rtl:mr-2 rtl:rotate-180 ltr:ml-2 h-4 w-4" />
+                </Button>
               </CardFooter>
             </Card>
           </div>

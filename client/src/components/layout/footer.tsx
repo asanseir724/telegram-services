@@ -1,39 +1,42 @@
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+  
   return (
     <footer className="bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
           <div className="px-5 py-2">
             <Link href="/">
-              <a className="text-base text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                Home
-              </a>
+              <span className="text-base text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white cursor-pointer">
+                {t('nav.home')}
+              </span>
             </Link>
           </div>
 
           <div className="px-5 py-2">
             <Link href="/#services">
-              <a className="text-base text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                Services
-              </a>
+              <span className="text-base text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white cursor-pointer">
+                {t('home.services.title')}
+              </span>
             </Link>
           </div>
 
           <div className="px-5 py-2">
             <a href="#" className="text-base text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-              Privacy
+              {t('footer.privacy')}
             </a>
           </div>
 
           <div className="px-5 py-2">
             <a href="#" className="text-base text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-              Terms
+              {t('footer.terms')}
             </a>
           </div>
         </nav>
-        <div className="mt-8 flex justify-center space-x-6">
+        <div className="mt-8 flex justify-center rtl:space-x-reverse space-x-6">
           <a href="#" className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
             <span className="sr-only">Telegram</span>
             <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -42,7 +45,7 @@ export default function Footer() {
           </a>
         </div>
         <p className="mt-8 text-center text-base text-gray-500 dark:text-gray-300">
-          &copy; {new Date().getFullYear()} TelegramPlus. All rights reserved.
+          &copy; {new Date().getFullYear()} {t('common.appName')}. {t('footer.rights')}
         </p>
       </div>
     </footer>

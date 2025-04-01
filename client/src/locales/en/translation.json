@@ -8,7 +8,9 @@
     "submit": "Submit",
     "cancel": "Cancel",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode"
   },
   "nav": {
     "home": "Home",
@@ -95,6 +97,92 @@
       "email": "Invalid email address",
       "username": "Username must be at least 3 characters",
       "password": "Password must be at least 6 characters"
+    }
+  },
+  "home": {
+    "seo": {
+      "title": "Buy Telegram Stars and Premium",
+      "description": "Upgrade your Telegram account with Stars and Premium easily at the best prices"
+    },
+    "services": {
+      "stars": {
+        "title": "Telegram Stars",
+        "desc": "Boost your stars to increase your account credibility",
+        "per100": "Per 100 Stars",
+        "buyButton": "Buy Stars",
+        "features": {
+          "visibility": "Increase channel visibility in search",
+          "engagement": "Boost user engagement",
+          "ranking": "Higher ranking in recommendations"
+        }
+      },
+      "premium": {
+        "title": "Telegram Premium",
+        "desc": "Enjoy advanced Telegram features with premium membership",
+        "perMonth": "Per Month",
+        "buyButton": "Get Premium",
+        "features": {
+          "files": "Upload larger files",
+          "channels": "Follow more channels",
+          "stickers": "Access exclusive stickers"
+        }
+      }
+    }
+  },
+  "service": {
+    "stars": {
+      "packages": "Available Packages",
+      "whyMatter": "Why Telegram Stars Matter",
+      "enhance": "Enhance your channel visibility and growth with Telegram Stars",
+      "benefitsTitle": "Star Benefits",
+      "howWork": "How Stars Work",
+      "buyNow": "Buy Stars Now",
+      "benefits": {
+        "visibility": "Increased channel visibility in search",
+        "forwarded": "Prominent display in forwarded messages",
+        "ranking": "Higher ranking in recommendations",
+        "standout": "Stand out in subscribers' chat list",
+        "credibility": "Enhanced channel credibility"
+      },
+      "features": {
+        "appearance": "Stars appear next to your channel name",
+        "more": "More stars = more prominence",
+        "visible": "Stars are visible to all Telegram users",
+        "attract": "Attract more subscribers to your channel"
+      }
+    },
+    "premium": {
+      "options": "Subscription Options",
+      "benefitsTitle": "Premium Benefits",
+      "unlock": "Unlock all exclusive Telegram Premium features",
+      "advantagesTitle": "Premium Advantages",
+      "exclusiveTitle": "Exclusive Features",
+      "getNow": "Get Premium Now",
+      "benefits": {
+        "upload": "Upload files up to 4GB (vs 2GB for regular accounts)",
+        "follow": "Follow up to 1000 channels (vs 500 for regular accounts)",
+        "folders": "Create up to 20 folders with 200 chats each",
+        "pin": "Pin up to 10 chats in your main list",
+        "links": "Reserve up to 10 public t.me links"
+      },
+      "features": {
+        "stickers": "Access to exclusive stickers and reactions",
+        "ads": "No ads in public channels",
+        "profile": "Animated profile pictures",
+        "badges": "Premium badges next to your name",
+        "voice": "Voice message to text conversion"
+      }
+    }
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "rights": "All Rights Reserved"
+  },
+  "errors": {
+    "notFound": {
+      "title": "Page Not Found",
+      "desc": "The page you're looking for doesn't exist or has been moved."
     }
   },
   "admin": {

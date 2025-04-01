@@ -49,18 +49,18 @@ export default function Navbar() {
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link href="/">
-                <a className={`${
+                <span className={`${
                   location === "/" 
                     ? "border-[#0088CC] text-gray-900 dark:text-white" 
                     : "border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white"
-                  } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+                  } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer`}>
                   {t('nav.home')}
-                </a>
+                </span>
               </Link>
               <Link href="/#services">
-                <a className="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                <span className="border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer">
                   {t('nav.services')}
-                </a>
+                </span>
               </Link>
             </div>
           </div>
@@ -122,28 +122,28 @@ export default function Navbar() {
         <div className="sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
             <Link href="/">
-              <a className={`${
+              <span className={`${
                 location === "/" 
                   ? "bg-[#EEF6FC] dark:bg-[#0088CC]/20 border-[#0088CC] text-[#0088CC] dark:text-white" 
                   : "border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
+                } block pl-3 pr-4 py-2 border-l-4 text-base font-medium cursor-pointer`}
                 onClick={() => setMobileMenuOpen(false)}>
                 {t('nav.home')}
-              </a>
+              </span>
             </Link>
             <Link href="/#services">
-              <a className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+              <span className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium cursor-pointer"
                  onClick={() => setMobileMenuOpen(false)}>
                 {t('nav.services')}
-              </a>
+              </span>
             </Link>
             {user?.isAdmin ? (
               <>
                 <Link href="/admin">
-                  <a className="border-transparent text-[#0088CC] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-[#0088CC] dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                  <span className="border-transparent text-[#0088CC] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-[#0088CC] dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium cursor-pointer"
                      onClick={() => setMobileMenuOpen(false)}>
                     {t('nav.admin')}
-                  </a>
+                  </span>
                 </Link>
                 <button
                   onClick={() => {
@@ -158,10 +158,10 @@ export default function Navbar() {
               </>
             ) : (
               <Link href="/auth">
-                <a className="mt-1 border-transparent text-[#0088CC] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-[#0088CC] dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                <span className="mt-1 border-transparent text-[#0088CC] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-[#0088CC] dark:hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium cursor-pointer"
                    onClick={() => setMobileMenuOpen(false)}>
                   {t('common.login')}
-                </a>
+                </span>
               </Link>
             )}
             <button
@@ -171,8 +171,11 @@ export default function Navbar() {
               }}
               className="border-transparent text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 dark:hover:text-white flex items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium"
             >
-              {isDarkMode ? <Sun size={16} className="mr-2" /> : <Moon size={16} className="mr-2" />}
-              {isDarkMode ? "Light Mode" : "Dark Mode"}
+              {isDarkMode ? 
+                <Sun size={16} className="rtl:ml-2 ltr:mr-2" /> : 
+                <Moon size={16} className="rtl:ml-2 ltr:mr-2" />
+              }
+              {isDarkMode ? t('common.lightMode') : t('common.darkMode')}
             </button>
             
             {/* Language options in mobile menu */}
