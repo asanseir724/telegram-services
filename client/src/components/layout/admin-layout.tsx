@@ -11,7 +11,8 @@ import {
   Menu, 
   X, 
   Sun, 
-  Moon 
+  Moon,
+  Type
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -46,6 +47,7 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
     { path: "/admin", label: "Dashboard", icon: <LayoutDashboard size={20} /> },
     { path: "/admin/orders", label: "Orders", icon: <ShoppingCart size={20} /> },
     { path: "/admin/pricing", label: "Pricing", icon: <DollarSign size={20} /> },
+    { path: "/admin/text-editor", label: "Text Editor", icon: <Type size={20} /> },
     { path: "/admin/settings", label: "Settings", icon: <Settings size={20} /> },
   ];
 

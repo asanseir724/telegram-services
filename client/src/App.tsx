@@ -12,6 +12,7 @@ import Dashboard from "@/pages/admin/dashboard";
 import Orders from "@/pages/admin/orders";
 import Pricing from "@/pages/admin/pricing";
 import Settings from "@/pages/admin/settings";
+import TextEditor from "@/pages/admin/text-editor";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
       <ProtectedRoute path="/admin" component={Dashboard} />
       <ProtectedRoute path="/admin/orders" component={Orders} />
       <ProtectedRoute path="/admin/pricing" component={Pricing} />
+      <ProtectedRoute path="/admin/text-editor" component={TextEditor} />
       <ProtectedRoute path="/admin/settings" component={Settings} />
       
       {/* Fallback to 404 */}

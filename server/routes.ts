@@ -153,7 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         phoneNumber: orderData.phoneNumber,
         email: orderData.email || undefined,
         quantity: orderData.quantity,
-        total: service.price * (orderData.quantity / service.quantity),
+        total: service.price * (orderData.quantity / (service.quantity || 1)),
         status: "pending"
       });
       
@@ -259,6 +259,70 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
     
     res.json(updatedSetting);
+  });
+
+  // Create setting (Admin only)
+  app.post("/api/settings", async (req, res) => {
+    if (!req.isAuthenticated() || !req.user.isAdmin) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    const { key, value } = req.body;
+    
+    if (typeof key !== "string" || typeof value !== "string") {
+      return res.status(400).json({ message: "Key and value must be strings" });
+    }
+
+    try {
+      const setting = await storage.createSetting({ key, value });
+      res.status(201).json(setting);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to create setting" });
+    }
+  });
+
+  // Routes specifically for translations
+  
+  // Get all translation settings (Admin only)
+  app.get("/api/settings/translations", async (req, res) => {
+    if (!req.isAuthenticated() || !req.user.isAdmin) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+    
+    const settings = await storage.getSettings();
+    // Filter for only translation related settings
+    const translationSettings = settings.filter(s => s.key.startsWith('translation_'));
+    res.json(translationSettings);
+  });
+
+  // Create or update a translation (Admin only)
+  app.post("/api/settings/translation", async (req, res) => {
+    if (!req.isAuthenticated() || !req.user.isAdmin) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    const { key, value } = req.body;
+    
+    if (typeof key !== "string" || typeof value !== "string") {
+      return res.status(400).json({ message: "Key and value must be strings" });
+    }
+
+    // Check if the translation setting already exists
+    const existingSetting = await storage.getSetting(key);
+    
+    if (existingSetting) {
+      // Update existing translation
+      const updatedSetting = await storage.updateSetting(key, value);
+      return res.json(updatedSetting);
+    } else {
+      // Create new translation setting
+      try {
+        const setting = await storage.createSetting({ key, value });
+        return res.status(201).json(setting);
+      } catch (error) {
+        return res.status(500).json({ message: "Failed to create translation setting" });
+      }
+    }
   });
 
   const httpServer = createServer(app);

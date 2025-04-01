@@ -31,15 +31,21 @@
     },
     "features": {
       "title": "Why Choose Us",
-      "delivery": {
+      "subtitle": "Benefits of using our services",
+      "desc": "With our services, you can effortlessly purchase Telegram Stars and Premium, and enjoy their benefits.",
+      "fastDelivery": {
         "title": "Fast Delivery",
         "desc": "Get your orders delivered in the shortest time possible"
+      },
+      "secure": {
+        "title": "Secure Transactions",
+        "desc": "All your transactions are performed with the highest security standards"
       },
       "support": {
         "title": "24/7 Support",
         "desc": "Our support team is always ready to help you"
       },
-      "price": {
+      "prices": {
         "title": "Best Prices",
         "desc": "We offer the best prices for Telegram services"
       }
@@ -192,6 +198,20 @@
       "pendingOrders": "Pending Orders",
       "completedOrders": "Completed Orders",
       "revenue": "Revenue"
+    },
+    "textEditor": {
+      "title": "Text Editor",
+      "subtitle": "Edit Website Text",
+      "description": "In this section, you can edit the website text in your preferred language. Changes will be applied after saving and reloading the page.",
+      "key": "Translation Key",
+      "value": "Translation Text",
+      "search": "Search in keys and values",
+      "save": "Save Changes",
+      "availableKeys": "Available Keys",
+      "success": "Success",
+      "successMessage": "Text updated successfully",
+      "error": "Error",
+      "overrideWarning": "This key has already been customized. Saving again will override the previous value."
     },
     "orders": {
       "title": "Order Management",
